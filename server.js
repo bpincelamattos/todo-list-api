@@ -42,14 +42,13 @@ app.post('/todos', (req,res) => {
 
 // PUT /api/todos/:id
 app.put('/todos/:id', (req, res) => {
-    let todo = req.params.todo;
     const id = req.params.id;
    
     let todoItem = todoList.find((currentTodo) => {
         return currentTodo.id == id; 
     })
-    todoItem.todo = todo;
-    res.status(200).send();
+    todoItem.todo = 'Updated Api';
+    res.status(200).send(todoItem);
 })
 
 // DELETE /api/todos/:id
