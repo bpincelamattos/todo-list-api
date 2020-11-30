@@ -34,7 +34,7 @@ app.post('/todos', (req,res) => {
     primaryId++;
     todoList.push({
         id: primaryId,
-        todo: "Implement a REST API"
+        todo: req.body.todo
     })
     
     res.status(200).send("Api Implemented succesfully");
@@ -43,11 +43,12 @@ app.post('/todos', (req,res) => {
 // PUT /api/todos/:id
 app.put('/todos/:id', (req, res) => {
     const id = req.params.id;
-   
+    let newTodo = req.body.todo;
+    
     let todoItem = todoList.find((currentTodo) => {
         return currentTodo.id == id; 
     })
-    todoItem.todo = 'Updated Api';
+    todoItem.todo = newTodo;
     res.status(200).send(todoItem);
 })
 
@@ -69,6 +70,6 @@ app.delete('/todos/:id', (req, res) => {
     res.status(200).send(todoList);
 })
 
-app.listen(3000, function(){
+app.listen(3001, () => {
     console.log('Todo List API is now listening on port 3000...');
 })
